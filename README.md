@@ -1,4 +1,4 @@
-# Connecta
+# React D3
 
 ##Installation
 
