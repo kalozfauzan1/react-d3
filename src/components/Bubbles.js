@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import * as d3 from 'd3'
-import { fillColor } from '../utils'
+import { fillColor, strokeColor } from '../utils'
 import tooltip from './Tooltip'
 
 export default class Bubbles extends React.Component {
   constructor(props) {
     super(props)
     const { forceStrength, center } = props
+    this.state = {
+      g: null,
+    }
     this.simulation = d3.forceSimulation()
       .velocityDecay(0.2)
       .force('x', d3.forceX().strength(forceStrength).x(center.x))
@@ -15,10 +18,6 @@ export default class Bubbles extends React.Component {
       .force('charge', d3.forceManyBody().strength(this.charge.bind(this)))
       .on('tick', this.ticked.bind(this))
       .stop()
-  }
-
-  state = {
-    g: null,
   }
 
   componentWillReceiveProps(nextProps) {
@@ -53,8 +52,8 @@ export default class Bubbles extends React.Component {
   regroupBubbles = (groupByYear) => {
     const { forceStrength, yearCenters, center } = this.props
     if (groupByYear) {
-      this.simulation.force('x', d3.forceX().strength(forceStrength).x(d => yearCenters[d.year].x))
-                      .force('y', d3.forceY().strength(forceStrength).y(d => yearCenters[d.year].y))
+      this.simulation.force('x', d3.forceX().strength(forceStrength).x(d => d.positions.kementerian.x))
+                      .force('y', d3.forceY().strength(forceStrength).y(d => d.positions.kementerian.y))
     } else {
       this.simulation.force('x', d3.forceX().strength(forceStrength).x(center.x))
                       .force('y', d3.forceY().strength(forceStrength).y(center.y))
@@ -64,6 +63,7 @@ export default class Bubbles extends React.Component {
 
   renderBubbles(data) {
     const bubbles = this.state.g.selectAll('.bubble').data(data, d => d.id)
+    console.log(bubbles,'dataa')
 
     // Exit
     bubbles.exit().remove()
@@ -74,8 +74,8 @@ export default class Bubbles extends React.Component {
       .attr('r', 0)
       .attr('cx', d => d.x)
       .attr('cy', d => d.y)
-      .attr('fill', d => fillColor(d.group))
-      .attr('stroke', d => d3.rgb(fillColor(d.group)).darker())
+      .attr('fill', d => fillColor(d.value))
+      .attr('stroke', d => d3.rgb(strokeColor(d.value)))
       .attr('stroke-width', 2)
       .on('mouseover', showDetail)  // eslint-disable-line
       .on('mouseout', hideDetail) // eslint-disable-line
@@ -109,8 +109,8 @@ Bubbles.propTypes = {
     x: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
     radius: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    // value: PropTypes.number.isRequired,
+    // name: PropTypes.string.isRequired,
   })),
 }
 
@@ -122,11 +122,14 @@ export function showDetail(d) {
     // change outline to indicate hover state.
   d3.select(this).attr('stroke', 'black')
 
-  const content = `<span class="name">Title: </span><span class="value">${
+  const content = `<span class="name">Kementrian: </span><span class="value">${
                   d.name
                   }</span><br/>` +
-                  `<span class="name">Amount: </span><span class="value">$${
+                  `<span class="name">Bajet: </span><span class="value">${
                   d.value
+                  }</span><br/>` +
+                  `<span class="name">Program: </span><span class="value">${
+                  d.org
                   }</span><br/>` +
                   `<span class="name">Year: </span><span class="value">${
                   d.year
@@ -141,7 +144,7 @@ export function showDetail(d) {
 export function hideDetail(d) {
     // reset outline
   d3.select(this)
-      .attr('stroke', d3.rgb(fillColor(d.group)).darker())
+      .attr('stroke', d3.rgb(strokeColor(d.group)))
 
   tooltip.hideTooltip()
 }

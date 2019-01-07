@@ -7,6 +7,7 @@ import YearsTitles from './components/YearsTitles'
 import GroupingPicker from './components/GroupingPicker'
 import { createNodes } from './utils'
 import { width, height, center, yearCenters } from './constants'
+import { circl } from './data';
 
 export default class App extends React.Component {
   state = {
@@ -15,14 +16,19 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    const data = circl.budget_array_data.map(it => { return it })
+    Promise.all([data]).then(() => this.setState({
+      data: createNodes(data),
+    }))
     d3.csv('data/gates_money.csv', (err, data) => {
       if (err) {
         console.log(err)
         return
       }
-      this.setState({
-        data: createNodes(data),
-      })
+      console.log(data,'aaa');
+      // this.setState({
+      //   data: createNodes(data),
+      // })
     })
   }
 
@@ -34,15 +40,16 @@ export default class App extends React.Component {
 
   render() {
     const { data, grouping } = this.state
+    console.log(data,'aaa');
     return (
       <div className="App">
         <GroupingPicker onChanged={this.onGroupingChanged} active={grouping} />
         <BubbleChart width={width} height={height}>
           <Bubbles data={data} forceStrength={0.03} center={center} yearCenters={yearCenters} groupByYear={grouping === 'year'} />
-          {
+          {/* {
             grouping === 'year' &&
             <YearsTitles width={width} yearCenters={yearCenters} />
-          }
+          } */}
         </BubbleChart>
       </div>
     )
