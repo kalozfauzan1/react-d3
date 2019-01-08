@@ -46,10 +46,10 @@ export default class App extends React.Component {
         <GroupingPicker onChanged={this.onGroupingChanged} active={grouping} />
         <BubbleChart width={width} height={height}>
           <Bubbles data={data} forceStrength={0.03} center={center} yearCenters={yearCenters} groupByYear={grouping === 'year'} />
-          {/* {
+          {
             grouping === 'year' &&
             <YearsTitles width={width} yearCenters={yearCenters} />
-          } */}
+          }
         </BubbleChart>
       </div>
     )

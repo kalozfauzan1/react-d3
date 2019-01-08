@@ -11,7 +11,7 @@ export default class GroupingPicker extends React.Component {
     return (
       <div className="GroupingPicker">
         <button className={`button ${active === 'all' && 'active'}`} name="all" onClick={this.onBtnClick}>All Grants</button>
-        <button className={`button ${active === 'year' && 'active'}`} name="year" onClick={this.onBtnClick}>Grants By Year</button>
+        <button className={`button ${active === 'year' && 'active'}`} name="year" onClick={this.onBtnClick}>Grants By Kementerian</button>
       </div>
     )
   }

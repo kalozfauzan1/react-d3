@@ -52,8 +52,8 @@ export default class Bubbles extends React.Component {
   regroupBubbles = (groupByYear) => {
     const { forceStrength, yearCenters, center } = this.props
     if (groupByYear) {
-      this.simulation.force('x', d3.forceX().strength(forceStrength).x(d => d.positions.kementerian.x))
-                      .force('y', d3.forceY().strength(forceStrength).y(d => d.positions.kementerian.y))
+      this.simulation.force('x', d3.forceX().strength(forceStrength).x(d => yearCenters[d.name] === undefined ? 0 : yearCenters[d.name].x))
+                      .force('y', d3.forceY().strength(forceStrength).y(d => yearCenters[d.name] === undefined ? 0 : yearCenters[d.name].y))
     } else {
       this.simulation.force('x', d3.forceX().strength(forceStrength).x(center.x))
                       .force('y', d3.forceY().strength(forceStrength).y(center.y))
