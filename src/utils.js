@@ -19,25 +19,7 @@ export function createNodes(rawData) {
 
     // Sizes bubbles based on area.
     // @v4: new flattened scale names.
-  const group = () => {
-        if (isNaN(d.beza)) {
-            return 0;
-        } else if (d.beza < -0.25) {
-            return -3;
-        } else if (d.beza < -0.05) {
-            return -2;
-        } else if (d.beza < -0.001) {
-            return -1;
-        } else if (d.beza <= 0.001) {
-            return 0;
-        } else if (d.beza <= 0.05) {
-            return 1;
-        } else if (d.beza <= 0.25) {
-            return 2;
-        } else {
-            return 3;
-        }
-  }
+  
   const radiusScale = d3.scalePow()
       .exponent(0.5)
       .range([2, 85])
@@ -46,27 +28,67 @@ export function createNodes(rawData) {
     // Use map() to convert raw data into node data.
     // Checkout http://learnjsdata.com/ for more on
     // working with data.
-  const myNodes = rawData.map(d => ({
+  let DataRow = [];
+  rawData.map(d => {
+      let group = 3;
+        if (isNaN(d.beza)) {
+            group = 0;
+        } else if (d.beza < -0.25) {
+            group = -3;
+        } else if (d.beza < -0.05) {
+            group = -2;
+        } else if (d.beza < -0.001) {
+            group = -1;
+        } else if (d.beza <= 0.001) {
+            group = 0;
+        } else if (d.beza <= 0.05) {
+            group = 1;
+        } else if (d.beza <= 0.25) {
+            group = 2;
+        } else {
+            group = 3;
+        }
+    
+      DataRow.push(
+        {
+            id: d.id,
+            radius: d.bajet2019,
+            value: d.bajet2019,
+            name: d.kementerian,
+            org: d.program,
+            group: group,
+            year: 2019,
+            x: Math.random() * 900,
+            y: Math.random() * 800,
+        },
+        {
+            id: d.id,
+            radius: +d.bajet2018,
+            value: +d.bajet2018,
+            name: d.kementerian,
+            org: d.program,
+            group: group,
+            year: 2018,
+            x: Math.random() * 900,
+            y: Math.random() * 800,
+        }
+      )
+  })
+  const myNodes = DataRow.map(d => ({
     id: d.id,
-    radius: radiusScale(d.bajet2019),
-    value: d.bajet2019,
-    name: d.kementerian,
-    org: d.program,
-    group: group,
-    positions:{
-      kementerian: {
-        x:d.positions.kementerian.x,
-        y:d.positions.kementerian.x
-      }
-    },
-    year: 2018,
-    x: Math.random() * 900,
-    y: Math.random() * 800,
+    radius: radiusScale(d.radius),
+    value: d.value,
+    name: d.name,
+    org: d.org,
+    group: d.group,
+    year: d.year,
+    x: d.x,
+    y: d.y,
   }))
 
     // sort them descending to prevent occlusion of smaller nodes.
-  myNodes.sort((a, b) => b.value - a.value)
-  console.log(myNodes)
+  myNodes.sort((a, b) => parseFloat(a.group) - parseFloat(b.group) )
+  console.log(myNodes,'aaabb')
 
   return myNodes
 }

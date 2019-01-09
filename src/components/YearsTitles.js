@@ -9,7 +9,7 @@ export default function YearsTitles({ yearCenters }) {
           <text
             key={year}
             x={yearCenters[year].x}
-            y={yearCenters[year].y - 40}
+            y={yearCenters[year].y}
             fontSize="10"
             textAnchor="middle"
             alignmentBaseline="middle"

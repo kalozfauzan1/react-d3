@@ -1,36 +1,43 @@
-export const width = 970
-export const height = 840
+export const width = 1100
+export const height = 2000
 
-export const center = { x: width / 2, y: height / 2 }
+export const center = { x: width / 2, y: 840 / 2 }
 
 export const yearCenters = {
-  "Kementerian Sumber Manusia": { x: width / 5, y: height / 15 },
-  "Kementerian Perumahan Dan Kerajaan Tempatan": { x: width - (width /2), y: height / 15 },
-  "Kementerian Tenaga, Sains, Teknologi, Alam Sekitar Dan Perubahan Iklim": { x: width - (width /3), y: height / 15 },
-  "Kementerian Sumber Manusia": { x: (5/6) *  width , y: height / 15 }, 
-  "Kementerian  Pembangunan Luar Bandar":{ x: width / 5, y: height /13 },
-  "Kementerian Air, Tanah Dan Sumber Asli":{ x: width - (width /2), y: height /13 },
-  "Kementerian Perdagangan Antarabangsa dan Industri":{ x: width - (width /3), y: height /13 },
-  "Kementerian Kerja Raya":{ x: (5/6) *  width , y: height / 13}, 
-  "Kementerian Pengangkutan":{ x: width / 5, y: height /11 },
-  "Kementerian Perumahan Dan Kerajaan Tempatan":{ x: width - (width /2), y: height /11 },
-  "Kementerian Pembangunan Wanita, Keluarga dan Masyarakat":{ x: width - (width /3), y: height /11 },
-  "Kementerian Pendidikan":{ x: (5/6) *  width , y: height / 11}, 
-  "Suruhanjaya Perkhidmatan Pelajaran":{ x: width / 5, y: height / 9}, 
-  "Kementerian Luar Negeri":{ x: width - (width /2), y: height / 9}, 
-  "Kementerian Industri Utama":{ x: width - (width /3), y: height / 9}, 
-  "Kementerian Tenaga, Sains, Teknologi, Alam Sekitar Dan Perubahan Iklim":{ x: (5 / 6) * width, y: height / 9}, 
-  "Kementerian Pelancongan, Seni Dan Budaya":{ x: width / 5, y: height / 4 }, 
-  "Kementerian Wilayah Persekutuan":{ x:  width - (width /2), y: height / 4 }, 
-  "Kementerian Komunikasi dan Multimedia":{ x:  width/2, y: height / 4 }, 
-  "Kementerian Belia dan Sukan":{ x: (5 / 6) * width, y: height / 4 }, 
-  "Kementerian Hal Ehwal Ekonomi":{ x: width / 5, y: height - (height / 2)}, 
-  "Kementerian Perdagangan Dalam Negeri Dan Hal Ehwal Pengguna":{ x: width - (width /2), y: height - (height / 2) },
-  "Kementerian Pertanian dan Industri Asas Tani":{ x: width - (width /3), y: height - (height / 2)}, 
-  "Kementerian Kesihatan":{ x: (5 / 6) * width, y: height - (height / 2)}, 
-  "Kementerian Pertahanan":{ x: width /5, y: height - (height / 5) },
-  "Kementerian Kewangan":{ x: width - (width /2), y: height - (height / 5) },
-  "Kementerian Pembangunan Usahawan":{ x: width - (width /3), y: height - (height / 5) },
-  "Kementerian Dalam Negeri":{ x: (5 / 6) * width, y: height - (height / 5) }
+  "Kementerian Sumber Manusia": { x: width / 4, y: 200 },
+  "Kementerian Perumahan Dan Kerajaan Tempatan": { x: width /2 , y: 200 },
+  "Kementerian Dalam Negeri":{ x: (3 / 4) * width, y: 200},
+  
+
+  "Kementerian  Pembangunan Luar Bandar":{ x: width / 4, y: 400 },
+  "Kementerian Air, Tanah Dan Sumber Asli":{ x: width / 2, y: 400  },
+  "Kementerian Perdagangan Antarabangsa dan Industri":{ x: (3/4) * width, y: 400 },
+
+  "Kementerian Kerja Raya":{ x: width /4 , y: 600}, 
+  "Kementerian Pengangkutan":{ x: width / 2, y: 600 },
+  "Kementerian Tenaga, Sains, Teknologi, Alam Sekitar Dan Perubahan Iklim": { x: (3/4) *  width, y: 600 },
+
+  "Kementerian Pembangunan Wanita, Keluarga dan Masyarakat":{ x: width / 4, y: 800 },
+  "Kementerian Pendidikan":{ x: width /2  , y: 800 }, 
+  "Suruhanjaya Perkhidmatan Pelajaran":{ x: (3/4) *   width , y: 800 }, 
+
+  "Kementerian Luar Negeri":{ x: width / 4, y: 1000 }, 
+  "Kementerian Industri Utama":{ x: width / 2, y: 1000 },
+  "Kementerian Perdagangan Dalam Negeri Dan Hal Ehwal Pengguna":{ x: (3 / 4) * width, y: 1000  }, 
+
+  "Kementerian Pelancongan, Seni Dan Budaya":{ x: width / 4, y: 1200  }, 
+  "Kementerian Wilayah Persekutuan":{ x:  width / 2, y: 1200  }, 
+  "Kementerian Komunikasi dan Multimedia":{ x:  (3 / 4) * width , y: 1200  }, 
+
+  "Kementerian Belia dan Sukan":{ x: width / 4, y: 1400  }, 
+  "Kementerian Hal Ehwal Ekonomi":{ x: width / 2, y: 1400}, 
+  "Kementerian Pertahanan":{ x: (3 / 4) * width, y: 1400 },
+
+  "Kementerian Pertanian dan Industri Asas Tani":{ x: width / 4, y: 1600 }, 
+  "Kementerian Kesihatan":{ x: width /2, y: 1600}, 
+  "Kementerian Kewangan":{ x: (3/4) * width, y: 1600},
+
+  "Kementerian Pembangunan Usahawan":{ x: width /2, y: 1800},
+  
 }
 
