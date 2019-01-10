@@ -19,13 +19,15 @@ export default class App extends React.Component {
     const data = circl.budget_array_data.map(it => { return it })
     Promise.all([data]).then(() => this.setState({
       data: createNodes(data),
-    }))
+    }),
+    console.log(data,'aaa')
+  )
     d3.csv('data/gates_money.csv', (err, data) => {
       if (err) {
         console.log(err)
         return
       }
-      console.log(data,'aaa');
+      // console.log(data,'aaa');
       // this.setState({
       //   data: createNodes(data),
       // })

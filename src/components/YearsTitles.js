@@ -6,18 +6,17 @@ export default function YearsTitles({ yearCenters }) {
     <g className="yearsTitles">
       {
         Object.keys(yearCenters).map(year =>
-          <text
-            key={year}
-            x={yearCenters[year].x}
-            y={yearCenters[year].y}
-            fontSize="10"
-            textAnchor="middle"
-            alignmentBaseline="middle"
-          >
-            {
-              year
-            }
-          </text>)
+          <foreignObject x={yearCenters[year].xTitle}
+          y={yearCenters[year].yTitle} width="100" height="70" textAnchor="middle"
+          alignmentBaseline="middle">
+            <text
+              key={year}
+            >
+              {
+                year
+              }
+            </text>
+          </foreignObject>)
       }
     </g>
   )
